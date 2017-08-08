@@ -1,10 +1,9 @@
 URL (http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?
-USERAGENT [0-9a-zA-Z-\.\,\s\/\(\)\;]+
+USERAGENT [0-9a-zA-Z-_\.\,\s\/\(\)\;\:]+
 PRINCIPAL [a-zA-Z0-9]+
 
 NEXPOSEACCESS %{TIMESTAMP_ISO8601:timestamp} \[%{LOGLEVEL:loglevel}\] \[Thread: [a-z0-9-]+(?:\=)?(?:%{URIPATH})?\] \[Method: %{USER:method}\] \[URI: %{URIPATH:uri}\]  \[Protocol: HTTP/1.1\] \[IP: %{IP:ip}\] \[Port: %{INT:port}\] \[Referer: %{URI:referer}\] \[User-Agent: %{USERAGENT:useragent}\] \[Authentication: %{USERNAME:authentication}\] \[Principal: (?:<)?(?:\")?(?<principal>[a-zA-Z0-9]+)(?:\")?(?:>)?\] \[Session: (%{BASE16NUM:session}|null)\] \[Silo ID: (?:<)?(?:\")?(?<siloID>[a-zA-Z0-9]+)(?:\")?(?:>)?\] \[User ID: (?:<)?(?:\")?(?<userID>[a-zA-Z0-9]+)(?:\")?(?:>)?\] \[Status: %{INT:status}\] \[Started: %{TIMESTAMP_ISO8601:started}\]
 
 NEXPOSEAUTH %{TIMESTAMP_ISO8601:timestamp} \[%{LOGLEVEL:loglevel}\] \[Thread: [a-z0-9-]+(?:\=)?(%{URIPATH})?\] (?:(\[User ID: (?:\")?(?<principal>[0-9a-zA-Z\@\.\\]+)(?:\")?\])|(\[Principal: (?:\")?(?<principal>[0-9a-zA-Z\@\.\\]+)(?:\")?\]))(?: \[Cause: (?<cause>[\s\w\d\\\'\"]+)\.\])?(?: \[Session ID: (%{BASE16NUM:session}|null)\])?(?: \[Total sessions for principal: %{INT:sessionTotal}\])?(?: (?<action>[\s\w\d]+)\.)?
-
 
 NEXPOSENSC %{TIMESTAMP_ISO8601:timestamp} \[%{LOGLEVEL:loglevel}\] \[Thread: (?<thread>[0-9a-zA-Z\:\-\s]+)(?:\=)?(?:[A-Za-z0-9$.+!*'(){},~:;=@#%_\-\/]+)?\](?: \[Silo ID: (?:<)?(?:\")?(?<siloID>[a-zA-Z0-9]+)(?:\")?(?:>)?\])?(?: \[User: (?:<)?(?:\")?(?<userID>[a-zA-Z0-9]+)(?:\")?(?:>)?\])?(?: \[User ID: (?:<)?(?:\")?(?<userID>[a-zA-Z0-9]+)(?:\")?(?:>)?\])?(?: \[Engine: (?<engine>[0-9a-zA-Z\s]+)\])?(?: \[Engine ID: (?<engineID>[0-9]+)\])?(?: \[Schema: %{USER:schema}\])?(?: Executing SQL: (?<sql>[0-9a-zA-Z-\_\.\:\;\=\s\(\)\%\'\,\$]+))?(?: Benchmark (?<benchmark>[0-9a-zA-Z-_\.:]+) is up to date and builtin\.)?(?:(?:\s)?(?<action>[a-zA-Z\s]+))?(?:(?:\s)?\[Started: %{TIMESTAMP_ISO8601:started}\])?(?:\[(?<job>[0-9a-zA-Z\-]+))?
