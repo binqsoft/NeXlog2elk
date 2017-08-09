@@ -1,0 +1,3 @@
+kibana_user:
+  - "cn=admins,dc=example,dc=com"
+  - "cn=Jack Nicholson,dc=example,dc=com"
