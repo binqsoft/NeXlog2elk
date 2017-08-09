@@ -3,6 +3,8 @@ FROM docker.elastic.co/logstash/logstash:5.5.0
 
 # Add your logstash plugins setup here
 # Example: RUN logstash-plugin install logstash-filter-json
-# RUN logstash-plugin update logstash-input-beats
+RUN logstash-plugin install logstash-filter-json
+RUN logstash-plugin update logstash-input-beats
 RUN logstash-plugin install logstash-filter-useragent
+RUN logstash-plugin install x-pack
 # CMD [ 'bin/logstash', '--debug' ]
