@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nexpose日志 登录</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/antd-mobile/1.0.5/antd-mobile.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background-color: #fff;
+        }
+
+        form {
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 300px;
+        }
+
+        input[type=text],
+        input[type=password],
+        button {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+            border: 1px solid #999;
+        }
+
+        input[type=text]:hover,
+        input[type=password]:hover {
+            /*border: 1px solid #39f;*/
+        }
+
+        button.submit {
+            color: #ffffff;
+            background-color: rgb(39, 136, 187);
+            font-size: 18px;
+            padding: 10px 20px;
+            border: 1px solid rgb(39, 136, 187);
+            border-radius: 6px;
+            margin-top: 30px;
+        }
+
+        .field {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #999;
+            line-height: 48px;
+        }
+
+        .field > input {
+            border: none;
+        }
+
+        .field > img {
+            float: left;
+            text-align: center;
+            position: relative;
+            width: 16px;
+            margin: 16px 12px;
+        }
+
+        .field > img + input {
+            margin-left: -40px;
+            padding-left: 40px;
+        }
+
+        .error {
+            background-color: #f66;
+            padding: 5px 10px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+         .flexbox {
+             display: flex;
+         }
+
+        body {
+            background-color: rgb(50, 59, 68);
+        }
+
+    </style>
+</head>
+<body>
+<div class="am-navbar am-navbar-light" style="background-color: rgb(33, 42, 61)">
+    <div class="am-navbar-left">
+    </div>
+    <div class="am-navbar-title" style="color: #fff">nexpose日志登录</div>
+    <div class="am-navbar-right">
+    </div>
+</div>
+<form method="post" style="background-color: #fff; border-radius: 4px">
+    <input name="next" value="{{ request.args.next }}" type="hidden">
+    <div class="field flexbox">
+        <label style="flex: 1;">账号</label>
+        <input style="flex: 3;" name="username" type="text" placeholder="请输入账号" value="{{ request.form.username }}">
+    </div>
+    {% if errors.username %}
+        <p class="error">{{ errors.username }}</p>
+    {% endif %}
+    <div class="field flexbox">
+        <label  style="flex: 1;">密码</label>
+        <input  style="flex: 3;" name="password" type="password" placeholder="请输入密码">
+    </div>
+    {% if errors.password %}
+        <p class="error">{{ errors.password }}</p>
+    {% endif %}
+    <div>
+        <button type="submit" class="submit">登录</button>
+    </div>
+</form>
+</body>
+</html>

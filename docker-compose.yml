@@ -21,8 +21,6 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - /Users/liang/Downloads/filebeat-5.5.1-darwin-x86_64/nexpose:/var/log/nexpose
-    ports:
-      - "5000:5000"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
@@ -41,7 +39,17 @@ services:
     depends_on:
       - elasticsearch
 
-networks:
+  logview:
+    build: logview/
+    ports:
+      - "5555:5000"
+    environment:
+      ES_HOST: "elasticsearch"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
 
+networks:
   elk:
     driver: bridge

@@ -1,2 +1,6 @@
 .vscode
 elasticsearch/esdata
+
+**/node_moduels
+.idea/
+nexpose.log
