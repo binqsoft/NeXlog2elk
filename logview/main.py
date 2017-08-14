@@ -71,7 +71,7 @@ def nexpose_api(index, offset):
     params = {
         'size': 50,
         'from': offset,
-        'sort': 'timestamp:desc'
+        'sort': '@timestamp:desc'
     }
     if q:
         params['q'] = q
@@ -127,7 +127,7 @@ def backup(index):
         params = {
             'size': 10,
             'from': 0,
-            'sort': 'timestamp:asc'
+            'sort': '@timestamp:desc'
         }
         if q:
             params['q'] = q
