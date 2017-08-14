@@ -135,6 +135,7 @@ def backup(index):
         while len(resp['hits']['hits']) > 0:
             for hit in resp['hits']['hits']:
                 yield hit['_source']['message']
+                yield '\n'
             params['from'] += 10
             resp = es.search(index='nexpose-{}-*'.format(index), params=params)
     
